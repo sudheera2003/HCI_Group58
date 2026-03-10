@@ -16,8 +16,8 @@ export default function PropertiesPanel() {
     addFurniture,
     updateFurniture,
     removeFurniture,
-    rotateItem, // <--- New Action
-    snapItem,   // <--- New Action
+    rotateItem,
+    snapItem,
     selectItem
   } = useStore();
 
@@ -40,7 +40,7 @@ export default function PropertiesPanel() {
 
       <CardContent className="p-4 space-y-6">
         
-        {/* --- CASE 1: NOTHING SELECTED (Show Add Buttons) --- */}
+        {/* NOTHING SELECTED */}
         {!selectedItem && (
           <div className="space-y-4">
             <p className="text-xs text-slate-500">
@@ -60,7 +60,7 @@ export default function PropertiesPanel() {
           </div>
         )}
 
-        {/* --- CASE 2: ITEM SELECTED (Show Properties) --- */}
+        {/* ITEM SELECTED */}
         {selectedItem && (
           <div className="space-y-5">
             
@@ -74,7 +74,7 @@ export default function PropertiesPanel() {
               </span>
             </div>
 
-            {/* NEW: Quick Actions (Rotate & Snap) */}
+            {/* Quick Actions (Rotate & Snap) */}
             <div className="grid grid-cols-2 gap-2">
               <Button 
                 variant="secondary" 

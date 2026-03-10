@@ -35,8 +35,8 @@ import {
   Loader2,
   Move,
   RotateCw,
-  Undo2, // <--- New Import
-  Redo2, // <--- New Import
+  Undo2,
+  Redo2,
 } from "lucide-react";
 import { UserMenu } from "./UserMenu";
 
@@ -56,7 +56,7 @@ export default function Toolbar() {
     projectName,
     setProjectName,
 
-    // --- History Hooks ---
+    // History Hooks
     undo,
     redo,
     past,
@@ -200,7 +200,7 @@ export default function Toolbar() {
             </span>
           </div>
 
-          {/* --- UNDO / REDO BUTTONS --- */}
+          {/* UNDO / REDO BUTTONS */}
           <div className="flex gap-1">
             <Button
               variant="ghost"
@@ -305,7 +305,6 @@ export default function Toolbar() {
         </div>
       </div>
 
-      {/* Dialogs... (Same as before) */}
       <Dialog open={isNameDialogOpen} onOpenChange={setIsNameDialogOpen}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>

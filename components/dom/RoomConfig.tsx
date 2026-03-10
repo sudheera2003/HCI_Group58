@@ -20,7 +20,7 @@ export default function RoomConfig() {
     snapItem,
     selectItem,
     selectedId,
-    // --- DOOR ACTIONS ---
+    // DOOR ACTIONS
     doors,
     addDoor,
     updateDoor,
@@ -28,10 +28,9 @@ export default function RoomConfig() {
   } = useStore();
 
   return (
-    // MAIN CARD: constrained to 85% view height
+    // MAIN CARD
     <Card className="absolute top-4 left-4 w-72 bg-white/95 backdrop-blur-md z-10 shadow-xl border-slate-200 flex flex-col max-h-[85vh] overflow-hidden">
       
-      {/* --- 1. FIXED TOP SECTION (Does not scroll) --- */}
       <div className="flex-shrink-0 bg-white/50 z-20">
         <CardHeader className="p-4 pb-2">
           <CardTitle className="text-sm font-bold flex items-center gap-2 text-slate-800">
@@ -97,7 +96,7 @@ export default function RoomConfig() {
         <Separator />
       </div>
 
-      {/* --- 2. SCROLLABLE BOTTOM SECTION (Walls & Doors) --- */}
+      {/* BOTTOM SECTION (Walls & Doors) */}
       <div className="flex-1 overflow-y-auto min-h-0">
         <div className="p-4 space-y-3">
           
@@ -237,7 +236,7 @@ export default function RoomConfig() {
                 </div>
               </div>
 
-              {/* --- DOORS LIST FOR THIS WALL --- */}
+              {/* DOORS LIST FOR THIS WALL */}
               {doors.filter(d => d.wallId === wall.id).map((door, i) => (
                 <div 
                   key={door.id} 
