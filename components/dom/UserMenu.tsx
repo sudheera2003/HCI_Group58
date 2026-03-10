@@ -40,7 +40,10 @@ export function UserMenu() {
 
   // fallback if not logged in, show a Login button
   if (!user) return (
-    <button onClick={() => router.push('/login')} className="text-sm font-medium">
+    <button 
+      onClick={() => router.push('/login')} 
+      className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+    >
       Login
     </button>
   )
@@ -48,28 +51,36 @@ export function UserMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar className="cursor-pointer hover:opacity-80 transition">
-          <AvatarFallback className="bg-blue-600 text-white font-bold">
+        <Avatar className="cursor-pointer hover:opacity-80 transition ring-2 ring-transparent hover:ring-primary/20">
+          <AvatarFallback className="bg-primary text-primary-foreground font-bold">
             {user.email ? getInitials(user.email) : 'U'}
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       
       <DropdownMenuContent align="end" className="w-56">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel className="flex flex-col space-y-1">
+          <span>My Account</span>
+          <span className="text-xs font-normal text-muted-foreground truncate">
+            {user.email}
+          </span>
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
         
-        <DropdownMenuItem onClick={() => router.push('/dashboard')}>
+        <DropdownMenuItem onClick={() => router.push('/dashboard')} className="cursor-pointer">
           My Saved Projects
         </DropdownMenuItem>
         
-        <DropdownMenuItem onClick={() => router.push('/editor/new')}>
+        <DropdownMenuItem onClick={() => router.push('/editor/new')} className="cursor-pointer">
           New Design
         </DropdownMenuItem>
         
         <DropdownMenuSeparator />
         
-        <DropdownMenuItem onClick={handleLogout} className="text-red-600">
+        <DropdownMenuItem 
+          onClick={handleLogout} 
+          className="text-destructive focus:bg-destructive/10 focus:text-destructive cursor-pointer"
+        >
           Log out
         </DropdownMenuItem>
       </DropdownMenuContent>

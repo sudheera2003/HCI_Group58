@@ -21,11 +21,11 @@ export default function LandingPage() {
   }, [supabase])
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center bg-white">
+    <div className="flex h-screen flex-col items-center justify-center bg-background text-foreground">
       <h1 className="text-5xl font-extrabold tracking-tight lg:text-6xl mb-6">
         Furniture Visualizer
       </h1>
-      <p className="text-xl text-slate-500 mb-8 max-w-lg text-center">
+      <p className="text-xl text-muted-foreground mb-8 max-w-lg text-center">
         Design your dream room in 3D. Visualize layout, colors, and furniture in real-time.
       </p>
       

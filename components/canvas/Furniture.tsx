@@ -3,11 +3,10 @@
 import { useRef, useState, useMemo, useEffect } from "react"
 import { useCursor, TransformControls } from "@react-three/drei"
 import { useStore, FurnitureItem } from "@/store/useStore"
-import { ThreeEvent, useThree } from "@react-three/fiber"
 import { useGesture } from "@use-gesture/react"
 import * as THREE from "three"
 
-// GEOMETRIES
+// --- GEOMETRIES ---
 
 const ChairGeometry = ({ color }: { color: string }) => (
   <group>
@@ -56,7 +55,76 @@ const BedGeometry = ({ color }: { color: string }) => (
   </group>
 )
 
-// MAIN COMPONENT
+const CupboardGeometry = ({ color }: { color: string }) => (
+  <group>
+    {/* Main Body */}
+    <mesh position={[0, 1, 0]} castShadow receiveShadow>
+      <boxGeometry args={[1.2, 2, 0.6]} />
+      <meshStandardMaterial color={color} />
+    </mesh>
+    {/* Door Split Line */}
+    <mesh position={[0, 1, 0.301]} receiveShadow>
+      <boxGeometry args={[0.02, 1.9, 0.01]} />
+      <meshStandardMaterial color="#222" />
+    </mesh>
+    {/* Handles */}
+    <mesh position={[-0.08, 1, 0.31]} castShadow>
+      <boxGeometry args={[0.02, 0.2, 0.02]} />
+      <meshStandardMaterial color="#ddd" />
+    </mesh>
+    <mesh position={[0.08, 1, 0.31]} castShadow>
+      <boxGeometry args={[0.02, 0.2, 0.02]} />
+      <meshStandardMaterial color="#ddd" />
+    </mesh>
+  </group>
+)
+
+const RoundTableGeometry = ({ color }: { color: string }) => (
+  <group>
+    {/* Table Top */}
+    <mesh position={[0, 0.75, 0]} castShadow receiveShadow>
+      <cylinderGeometry args={[0.6, 0.6, 0.05, 32]} />
+      <meshStandardMaterial color={color} />
+    </mesh>
+    {/* Center Leg */}
+    <mesh position={[0, 0.375, 0]} castShadow>
+      <cylinderGeometry args={[0.06, 0.06, 0.75, 16]} />
+      <meshStandardMaterial color="#333" />
+    </mesh>
+    {/* Base Plate */}
+    <mesh position={[0, 0.02, 0]} castShadow>
+      <cylinderGeometry args={[0.3, 0.3, 0.04, 32]} />
+      <meshStandardMaterial color="#333" />
+    </mesh>
+  </group>
+)
+
+const SofaGeometry = ({ color }: { color: string }) => (
+  <group>
+    {/* Seat Base */}
+    <mesh position={[0, 0.2, 0.1]} castShadow receiveShadow>
+      <boxGeometry args={[2, 0.3, 0.8]} />
+      <meshStandardMaterial color={color} />
+    </mesh>
+    {/* Backrest */}
+    <mesh position={[0, 0.6, -0.2]} castShadow receiveShadow>
+      <boxGeometry args={[2, 0.6, 0.2]} />
+      <meshStandardMaterial color={color} />
+    </mesh>
+    {/* Left Armrest */}
+    <mesh position={[-0.9, 0.45, 0.1]} castShadow receiveShadow>
+      <boxGeometry args={[0.2, 0.5, 0.8]} />
+      <meshStandardMaterial color={color} />
+    </mesh>
+    {/* Right Armrest */}
+    <mesh position={[0.9, 0.45, 0.1]} castShadow receiveShadow>
+      <boxGeometry args={[0.2, 0.5, 0.8]} />
+      <meshStandardMaterial color={color} />
+    </mesh>
+  </group>
+)
+
+// --- MAIN COMPONENT ---
 
 interface Props {
   item: FurnitureItem;
@@ -194,10 +262,13 @@ export function Furniture({ item }: Props) {
         {item.type === 'chair' && <ChairGeometry color={isSelected ? "#ff9900" : item.color} />}
         {item.type === 'table' && <TableGeometry color={isSelected ? "#ff9900" : item.color} />}
         {item.type === 'bed' && <BedGeometry color={isSelected ? "#ff9900" : item.color} />}
+        {item.type === 'cupboard' && <CupboardGeometry color={isSelected ? "#ff9900" : item.color} />}
+        {item.type === 'round_table' && <RoundTableGeometry color={isSelected ? "#ff9900" : item.color} />}
+        {item.type === 'sofa' && <SofaGeometry color={isSelected ? "#ff9900" : item.color} />}
         
-        {/* Invisible Hitbox */}
-        <mesh visible={false}>
-            <boxGeometry args={[1.5, 1, 1.5]} />
+        {/* Invisible Hitbox - Made slightly taller to encompass the cupboard */}
+        <mesh visible={false} position={[0, 1, 0]}>
+            <boxGeometry args={[2.2, 2.2, 2.2]} />
         </mesh>
       </group>
     </group>

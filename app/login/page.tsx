@@ -85,15 +85,15 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-slate-50">
-      <Card className="w-full max-w-md">
+    <div className="flex items-center justify-center min-h-screen bg-background">
+      <Card className="w-full max-w-md bg-card border-border shadow-lg">
         
         {/* EMAIL ENTRY */}
         {step === "email" && (
           <form onSubmit={handleSendOtp}>
             <CardHeader className="text-center">
-              <CardTitle>Welcome Back</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-foreground">Welcome Back</CardTitle>
+              <CardDescription className="text-muted-foreground">
                 Enter your email to receive a one-time login code.
               </CardDescription>
             </CardHeader>
@@ -107,7 +107,7 @@ export default function LoginPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     disabled={loading}
-                    className="h-10"
+                    className="h-10 bg-background border-border"
                   />
                 </div>
               </div>
@@ -134,9 +134,9 @@ export default function LoginPage() {
         {step === "otp" && (
           <form onSubmit={handleVerifyOtp}>
             <CardHeader>
-              <CardTitle>Check your email</CardTitle>
-              <CardDescription>
-                We sent a 8-digit code to <span className="font-bold text-slate-700">{email}</span>.
+              <CardTitle className="text-foreground">Check your email</CardTitle>
+              <CardDescription className="text-muted-foreground">
+                We sent an 8-digit code to <span className="font-bold text-foreground">{email}</span>.
               </CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col items-center justify-center space-y-4 mt-3">
@@ -149,26 +149,26 @@ export default function LoginPage() {
                 disabled={loading}
               >
                 <InputOTPGroup>
-                  <InputOTPSlot index={0} />
-                  <InputOTPSlot index={1} />
-                  <InputOTPSlot index={2} />
-                  <InputOTPSlot index={3} />
+                  <InputOTPSlot index={0} className="border-border bg-background" />
+                  <InputOTPSlot index={1} className="border-border bg-background" />
+                  <InputOTPSlot index={2} className="border-border bg-background" />
+                  <InputOTPSlot index={3} className="border-border bg-background" />
                 </InputOTPGroup>
                 <InputOTPSeparator />
                 <InputOTPGroup>
-                  <InputOTPSlot index={4} />
-                  <InputOTPSlot index={5} />
-                  <InputOTPSlot index={6} />
-                  <InputOTPSlot index={7} />
+                  <InputOTPSlot index={4} className="border-border bg-background" />
+                  <InputOTPSlot index={5} className="border-border bg-background" />
+                  <InputOTPSlot index={6} className="border-border bg-background" />
+                  <InputOTPSlot index={7} className="border-border bg-background" />
                 </InputOTPGroup>
               </InputOTP>
 
-              <p className="text-xs text-slate-400 text-center">
+              <p className="text-xs text-muted-foreground text-center">
                 Can't find it? Check your spam folder.
               </p>
             </CardContent>
             <CardFooter className="flex flex-col gap-2 mt-3">
-              <Button className="w-full" type="submit" disabled={loading || otp.length < 6}>
+              <Button className="w-full" type="submit" disabled={loading || otp.length < 8}>
                 {loading ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
@@ -178,7 +178,7 @@ export default function LoginPage() {
               
               <Button
                 variant="ghost"
-                className="w-full text-xs text-slate-500"
+                className="w-full text-xs text-muted-foreground hover:text-foreground transition-colors"
                 onClick={() => {
                   setStep("email");
                   setOtp("");

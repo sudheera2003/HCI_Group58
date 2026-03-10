@@ -32,7 +32,7 @@ export default function Scene() {
   const pointerDownPos = useRef({ x: 0, y: 0 });
 
   return (
-    <div className="w-full h-full bg-slate-100 relative">
+    <div className="w-full h-full bg-background relative">
       <Canvas shadows dpr={[1, 2]} gl={{ preserveDrawingBuffer: true }}>
         
         {/* LIGHTING */}
@@ -88,12 +88,13 @@ export default function Scene() {
 
         </Suspense>
 
+        {/* Updated Grid colors to neutral greys so they are visible in both light and dark modes */}
         <Grid
           args={[room.width, room.length]} 
           infiniteGrid
           fadeDistance={30}
-          sectionColor={is2D ? "#000000" : "#ffffff"}
-          cellColor={is2D ? "#cccccc" : "#dddddd"}
+          sectionColor="#888888" 
+          cellColor={is2D ? "#aaaaaa" : "#cccccc"}
         />
 
         {/* CAMERAS */}

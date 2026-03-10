@@ -10,7 +10,7 @@ export type RoomData = {
   floorColor: string;
 };
 
-export type FurnitureType = "chair" | "table" | "bed";
+export type FurnitureType = "chair" | "table" | "bed" | "cupboard" | "round_table" | "sofa";
 
 export type WallItem = {
   id: string;

@@ -77,17 +77,19 @@ export default function EditorPage() {
     initEditor();
   }, [projectId, loadDesign, setProjectId, setProjectName, reset]);
 
+  // --- CHANGED: Replaced bg-slate-50, text-blue-600, text-slate-700 ---
   if (loading) {
     return (
-      <div className="h-screen w-screen flex flex-col items-center justify-center bg-slate-50">
-        <Loader2 className="w-10 h-10 animate-spin text-blue-600 mb-4" />
-        <h2 className="text-xl font-semibold text-slate-700">Loading your design...</h2>
+      <div className="h-screen w-screen flex flex-col items-center justify-center bg-background text-foreground">
+        <Loader2 className="w-10 h-10 animate-spin text-primary mb-4" />
+        <h2 className="text-xl font-semibold text-muted-foreground">Loading your design...</h2>
       </div>
     );
   }
 
+  // --- CHANGED: Replaced bg-slate-100 with bg-background text-foreground ---
   return (
-    <main className="h-screen w-screen flex flex-col overflow-hidden bg-slate-100">
+    <main className="h-screen w-screen flex flex-col overflow-hidden bg-background text-foreground">
       <div className="flex-1 relative w-full h-full">
         {/* The 3D Scene fills this container */}
         <Scene />

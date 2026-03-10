@@ -186,14 +186,14 @@ export default function Toolbar() {
     <>
       {/* Main toolbar UI */}
       <div className="absolute top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-fit px-4">
-        <div className="flex items-center gap-2 p-2 bg-white/90 backdrop-blur-md border shadow-xl rounded-full px-4 overflow-x-auto">
+        <div className="flex items-center gap-2 p-2 bg-background/90 backdrop-blur-md border border-border shadow-xl rounded-full px-4 overflow-x-auto">
           {/* Name Display */}
-          <div className="hidden md:flex flex-col px-2 mr-2 border-r border-slate-200 min-w-[100px]">
-            <span className="text-xs text-slate-400 font-medium uppercase tracking-wider">
+          <div className="hidden md:flex flex-col px-2 mr-2 border-r border-border min-w-[100px]">
+            <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">
               Project
             </span>
             <span
-              className="text-sm font-semibold text-slate-700 truncate max-w-[150px]"
+              className="text-sm font-semibold text-foreground truncate max-w-[150px]"
               title={projectName}
             >
               {projectName || "Untitled"}
@@ -207,7 +207,7 @@ export default function Toolbar() {
               size="icon"
               onClick={undo}
               disabled={past.length === 0}
-              className="h-8 w-8 rounded-full text-slate-600 hover:text-blue-600 disabled:opacity-30"
+              className="h-8 w-8 rounded-full text-muted-foreground hover:text-primary hover:bg-primary/10 disabled:opacity-30"
               title="Undo"
             >
               <Undo2 className="w-4 h-4" />
@@ -217,25 +217,25 @@ export default function Toolbar() {
               size="icon"
               onClick={redo}
               disabled={future.length === 0}
-              className="h-8 w-8 rounded-full text-slate-600 hover:text-blue-600 disabled:opacity-30"
+              className="h-8 w-8 rounded-full text-muted-foreground hover:text-primary hover:bg-primary/10 disabled:opacity-30"
               title="Redo"
             >
               <Redo2 className="w-4 h-4" />
             </Button>
           </div>
 
-          <div className="w-px h-8 bg-slate-200 mx-1" />
+          <div className="w-px h-8 bg-border mx-1" />
 
           {/* Transform Tools (Only in 3D) */}
           {!is2D && (
             <>
-              <div className="flex bg-slate-100/50 p-1 rounded-full border">
+              <div className="flex bg-muted/50 p-1 rounded-full border border-border">
                 {/* Move */}
                 <Button
                   variant="ghost"
                   onClick={() => setTransformMode("translate")}
                   size="icon"
-                  className={`h-8 w-8 rounded-full transition-all ${transformMode === "translate" ? "bg-white shadow-sm text-blue-600 border border-slate-200" : "text-slate-500 hover:text-slate-900"}`}
+                  className={`h-8 w-8 rounded-full transition-all ${transformMode === "translate" ? "bg-background shadow-sm text-primary border border-border" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`}
                   title="Move Tool"
                 >
                   <Move className="w-4 h-4" />
@@ -246,23 +246,23 @@ export default function Toolbar() {
                   variant="ghost"
                   onClick={() => setTransformMode("rotate")}
                   size="icon"
-                  className={`h-8 w-8 rounded-full transition-all ${transformMode === "rotate" ? "bg-white shadow-sm text-blue-600 border border-slate-200" : "text-slate-500 hover:text-slate-900"}`}
+                  className={`h-8 w-8 rounded-full transition-all ${transformMode === "rotate" ? "bg-background shadow-sm text-primary border border-border" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`}
                   title="Rotate Tool"
                 >
                   <RotateCw className="w-4 h-4" />
                 </Button>
               </div>
-              <div className="w-px h-8 bg-slate-200 mx-1" />
+              <div className="w-px h-8 bg-border mx-1" />
             </>
           )}
 
           {/* View Toggle */}
-          <div className="flex bg-slate-100/50 p-1 rounded-full border">
+          <div className="flex bg-muted/50 p-1 rounded-full border border-border">
             <Button
               variant="ghost"
               onClick={() => !is2D && toggleViewMode()}
               size="sm"
-              className={`h-8 rounded-full px-4 text-xs font-medium transition-all ${is2D ? "bg-white shadow-sm text-slate-900 border border-slate-200" : "text-slate-500 hover:text-slate-900"}`}
+              className={`h-8 rounded-full px-4 text-xs font-medium transition-all ${is2D ? "bg-background shadow-sm text-foreground border border-border" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`}
             >
               <Grid3X3 className="w-3.5 h-3.5 mr-2" />
               2D
@@ -271,14 +271,14 @@ export default function Toolbar() {
               variant="ghost"
               onClick={() => is2D && toggleViewMode()}
               size="sm"
-              className={`h-8 rounded-full px-4 text-xs font-medium transition-all ${!is2D ? "bg-white shadow-sm text-slate-900 border border-slate-200" : "text-slate-500 hover:text-slate-900"}`}
+              className={`h-8 rounded-full px-4 text-xs font-medium transition-all ${!is2D ? "bg-background shadow-sm text-foreground border border-border" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`}
             >
               <Monitor className="w-3.5 h-3.5 mr-2" />
               3D
             </Button>
           </div>
 
-          <div className="w-px h-8 bg-slate-200 mx-1" />
+          <div className="w-px h-8 bg-border mx-1" />
 
           {/* Save Button */}
           <Button
@@ -286,7 +286,7 @@ export default function Toolbar() {
             disabled={saving}
             variant="ghost"
             size="sm"
-            className="h-9 px-3 text-slate-700 hover:bg-slate-100 rounded-full font-medium"
+            className="h-9 px-3 text-foreground hover:bg-muted rounded-full font-medium"
           >
             {saving ? (
               <Loader2 className="w-4 h-4 animate-spin mr-2" />
@@ -298,7 +298,7 @@ export default function Toolbar() {
             </span>
           </Button>
 
-          <div className="w-px h-8 bg-slate-200 mx-1" />
+          <div className="w-px h-8 bg-border mx-1" />
 
           {/* User Profile */}
           <UserMenu />
@@ -323,7 +323,7 @@ export default function Toolbar() {
                 value={nameInput}
                 onChange={(e) => setNameInput(e.target.value)}
                 placeholder="e.g. Dream Living Room"
-                className="col-span-3"
+                className="col-span-3 bg-background"
                 autoFocus
               />
             </div>
@@ -352,7 +352,7 @@ export default function Toolbar() {
             <AlertDialogTitle>Overwrite existing project?</AlertDialogTitle>
             <AlertDialogDescription>
               This will update the saved version of{" "}
-              <span className="font-semibold text-slate-900">
+              <span className="font-semibold text-foreground">
                 "{projectName}"
               </span>{" "}
               with your current changes. This action cannot be undone.
