@@ -88,7 +88,6 @@ export default function Scene() {
 
         </Suspense>
 
-        {/* Updated Grid colors to neutral greys so they are visible in both light and dark modes */}
         <Grid
           args={[room.width, room.length]} 
           infiniteGrid

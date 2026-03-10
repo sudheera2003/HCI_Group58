@@ -6,7 +6,7 @@ import { useStore, FurnitureItem } from "@/store/useStore"
 import { useGesture } from "@use-gesture/react"
 import * as THREE from "three"
 
-// --- GEOMETRIES ---
+// GEOMETRIES
 
 const ChairGeometry = ({ color }: { color: string }) => (
   <group>
