@@ -5,7 +5,7 @@ import { createClient } from "@/lib/supabase";
 import { useStore } from "@/store/useStore";
 import { useParams, useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
-import { toast } from "sonner"; // Optional: for error notifications
+import { toast } from "sonner";
 
 import Scene from "@/components/canvas/Scene";
 import Toolbar from "@/components/dom/Toolbar";
@@ -32,14 +32,14 @@ export default function EditorPage() {
     const initEditor = async () => {
       if (!projectId) return;
 
-      // --- CASE 1: NEW PROJECT ---
+      // NEW PROJECT 
       if (projectId === "new") {
         reset(); // Clear previous state
         setLoading(false);
         return;
       }
 
-      // --- CASE 2: EXISTING PROJECT ---
+      // EXISTING PROJECT
       try {
         const { data, error } = await supabase
           .from("designs")
@@ -53,7 +53,7 @@ export default function EditorPage() {
           throw new Error("Project not found");
         }
 
-        // 1. Load Data into Store
+        // Load Data into Store
         loadDesign({
           room: data.room_data,
           furniture: data.furniture_data || [], // Safety fallback
@@ -61,14 +61,14 @@ export default function EditorPage() {
           doors: data.doors_data || [],
         });
 
-        // 2. Set Project Metadata
+        // Set Project Metadata
         setProjectId(data.id);
         setProjectName(data.name);
 
       } catch (error) {
         console.error("Error loading project:", error);
         toast.error("Failed to load project");
-        // Optional: router.push('/dashboard');
+        // router.push('/dashboard');
       } finally {
         setLoading(false);
       }
@@ -92,7 +92,7 @@ export default function EditorPage() {
         {/* The 3D Scene fills this container */}
         <Scene />
         
-        {/* UI Overlays (Absolute Positioned inside their components) */}
+        {/* UI Overlays */}
         <RoomConfig />
         <Toolbar />
         <PropertiesPanel />

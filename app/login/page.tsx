@@ -32,7 +32,7 @@ export default function LoginPage() {
   const supabase = createClient();
   const router = useRouter();
 
-  // 1. SEND OTP CODE
+  // SEND OTP CODE
   const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -56,7 +56,7 @@ export default function LoginPage() {
     }
   };
 
-  // 2. VERIFY OTP CODE
+  // VERIFY OTP CODE
   const handleVerifyOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -88,7 +88,7 @@ export default function LoginPage() {
     <div className="flex items-center justify-center min-h-screen bg-slate-50">
       <Card className="w-full max-w-md">
         
-        {/* --- STEP 1: EMAIL ENTRY --- */}
+        {/* EMAIL ENTRY */}
         {step === "email" && (
           <form onSubmit={handleSendOtp}>
             <CardHeader className="text-center">
@@ -130,7 +130,7 @@ export default function LoginPage() {
           </form>
         )}
 
-        {/* --- STEP 2: OTP ENTRY (SHADCN UI) --- */}
+        {/* OTP ENTRY */}
         {step === "otp" && (
           <form onSubmit={handleVerifyOtp}>
             <CardHeader>
