@@ -1,21 +1,4 @@
-# Next.js template
+#env file
 
-This is a Next.js template with shadcn/ui.
-
-## Adding components
-
-To add components to your app, run the following command:
-
-```bash
-npx shadcn@latest add button
-```
-
-This will place the ui components in the `components` directory.
-
-## Using components
-
-To use the components in your app, import them as follows:
-
-```tsx
-import { Button } from "@/components/ui/button";
-```
+NEXT_PUBLIC_SUPABASE_URL=https://pvbeydeprtrowiqsejis.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB2YmV5ZGVwcnRyb3dpcXNlamlzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2NDcyMTksImV4cCI6MjA4NjIyMzIxOX0.taww0ozkPKHQjo56-q52wGj2OHbWDTrvbNdHXRfnhV4
